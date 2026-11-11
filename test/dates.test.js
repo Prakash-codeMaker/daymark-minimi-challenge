@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { resolveDateReferences } from '../src/dates.js';
+const now=new Date('2026-11-11T08:00:00Z');
+test('resolves explicit date in the past',()=>{const x=resolveDateReferences('What did I ask on 3 November?',{now,timezone:'Asia/Kolkata'});assert.equal(x[0].date,'2026-11-03');});
+test('preserves both readings of last Tuesday',()=>{const x=resolveDateReferences('last Tuesday I asked about Postgres',{now,timezone:'Asia/Kolkata'});assert.deepEqual(x.map(v=>v.date),['2026-11-10','2026-11-03']);assert.ok(x.every(v=>v.confidence==='ambiguous-weekday'));});
+test('resolves yesterday',()=>{const x=resolveDateReferences('What happened yesterday?',{now,timezone:'Asia/Kolkata'});assert.equal(x[0].date,'2026-11-10');});
+test('resolves weeks ago',()=>{const x=resolveDateReferences('3 weeks ago',{now,timezone:'Asia/Kolkata'});assert.equal(x[0].date,'2026-10-21');});
+test('does not invent date for unrelated text',()=>{assert.deepEqual(resolveDateReferences('What is Postgres hosting?',{now,timezone:'Asia/Kolkata'}),[]);});
+test('uses timezone-local day boundaries',()=>{const x=resolveDateReferences('on 3 November',{now,timezone:'Asia/Kolkata'});assert.equal(x[0].start,'2026-11-02T18:30:00.000Z');assert.equal(x[0].end,'2026-11-03T18:30:00.000Z');});

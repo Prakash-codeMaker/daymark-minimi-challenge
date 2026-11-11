@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { openDatabase,saveTurn,saveSources,recallByDate,recallByTopic } from '../src/db.js';
+import { DatabaseSync } from 'node:sqlite';
+function memoryDb(){const db=new DatabaseSync(':memory:');db.exec(`CREATE TABLE turns(id INTEGER PRIMARY KEY,conversation_id TEXT,role TEXT,content TEXT,created_at TEXT,status TEXT,reply_to INTEGER);CREATE VIRTUAL TABLE turns_fts USING fts5(content,content='turns',content_rowid='id');CREATE TRIGGER turns_ai AFTER INSERT ON turns BEGIN INSERT INTO turns_fts(rowid,content) VALUES(new.id,new.content);END;CREATE TABLE sources(id INTEGER PRIMARY KEY,turn_id INTEGER,title TEXT,url TEXT,published_date TEXT,snippet TEXT,source_type TEXT,query TEXT,search_since TEXT,retrieved_at TEXT,content_hash TEXT);`);return db;}
+test('stores turns and recalls exact date range',()=>{const db=memoryDb();const id=saveTurn(db,{conversationId:'c',role:'user',content:'Compare Postgres hosting',createdAt:'2026-11-03T05:00:00.000Z'});saveSources(db,id,[{title:'Docs',url:'https://example.com'}]);const rows=recallByDate(db,'2026-11-03T00:00:00.000Z','2026-11-04T00:00:00.000Z');assert.equal(rows.length,1);assert.equal(rows[0].sources[0].url,'https://example.com');db.close();});
+test('topic recall uses FTS5',()=>{const db=memoryDb();saveTurn(db,{conversationId:'c',role:'user',content:'Compare Postgres hosting providers',createdAt:new Date().toISOString()});assert.equal(recallByTopic(db,'Postgres hosting').length,1);db.close();});

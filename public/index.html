@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c0e12">
+<title>Daymark — a temporal research instrument</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{color-scheme:dark;--bg:#0c0e12;--panel:#11151b;--panel2:#161b23;--line:#252d38;--line2:#333e4d;--ink:#e9edf3;--muted:#8793a3;--soft:#aeb8c5;--acid:#c8f169;--violet:#a99aff;--cyan:#8fe1dc;--amber:#edc681;--red:#e58b8b;--radius:15px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -18%,#293143 0,#11151d 28%,#0c0e12 68%);color:var(--ink);font:14px/1.55 'DM Sans',sans-serif;min-height:100vh}.mono{font-family:'DM Mono',monospace}.app{max-width:1600px;margin:auto;padding:0 26px 36px}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:33px;height:33px;border:1px solid #81924e;border-radius:10px;background:linear-gradient(145deg,#d9ff84,#91b84f);display:grid;place-items:center;color:#11170b;font:800 17px Manrope;box-shadow:0 0 28px #bde96822}.brandname{font:800 17px Manrope;letter-spacing:-.05em}.brandmeta{font:10px 'DM Mono';letter-spacing:.15em;color:var(--muted);margin-top:1px}.topright{display:flex;align-items:center;gap:12px;color:var(--muted);font:10px 'DM Mono';letter-spacing:.1em;text-transform:uppercase}.status{display:flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:7px 11px;background:#11161c}.dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 8px currentColor}.status.ready .dot{background:var(--acid)}.status.bad .dot{background:var(--red)}.workspace{display:grid;grid-template-columns:235px minmax(420px,1fr) 300px;gap:19px;padding-top:22px;align-items:start}.side{background:#10141a99;border:1px solid var(--line);border-radius:var(--radius);padding:16px;position:sticky;top:16px;max-height:calc(100vh - 95px);overflow:auto}.sectionhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}.sectionhead h3{font:600 11px 'DM Mono';color:var(--soft);letter-spacing:.12em;text-transform:uppercase;margin:0}.count{font:10px 'DM Mono';color:#687484}.leftcol .side+.side{margin-top:14px}.indexlist{display:grid;gap:7px}.indexitem{display:block;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:9px;padding:9px 9px;color:var(--soft);cursor:pointer}.indexitem:hover{background:var(--panel2);border-color:var(--line)}.indexdate{display:block;font:10px 'DM Mono';color:var(--violet);margin-bottom:4px}.indextext{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12px;line-height:1.4}.emptyhint{color:#707d8d;font-size:12px;padding:8px 2px}.promptlist{display:grid;gap:8px}.prompt{background:#151a21;border:1px solid var(--line);border-radius:10px;color:#bcc6d4;padding:10px 11px;text-align:left;font:12px/1.45 'DM Sans';cursor:pointer;transition:.15s}.prompt:hover{border-color:#657347;background:#1b2319;color:#e5f2ca}.prompt small{display:block;color:#7d8b9a;font:9px 'DM Mono';letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}.maincol{min-width:0}.hero{padding:12px 10px 18px}.kicker{color:var(--acid);font:10px 'DM Mono';letter-spacing:.2em;text-transform:uppercase}.hero h1{font:800 clamp(28px,3.7vw,49px)/1.02 Manrope;letter-spacing:-.065em;margin:13px 0 11px;max-width:760px}.hero h1 span{color:var(--violet)}.hero p{max-width:670px;color:var(--muted);font-size:13px;margin:0}.hero .rule{display:flex;align-items:center;gap:9px;margin-top:17px;color:#8994a3;font:9px 'DM Mono';letter-spacing:.11em;text-transform:uppercase}.rule:before{content:'';width:20px;height:1px;background:var(--acid)}.thread{background:linear-gradient(180deg,#12171f,#0f1319);border:1px solid var(--line);border-radius:17px;min-height:300px;overflow:hidden;box-shadow:0 18px 70px #0003}.threadhead{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);font:10px 'DM Mono';letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.threadhead .live{color:var(--cyan)}.messages{padding:18px 17px 10px;max-height:56vh;min-height:240px;overflow:auto}.welcome{padding:54px 18px;text-align:center}.orbit{width:74px;height:74px;border:1px solid #59627a;border-radius:50%;margin:0 auto 17px;position:relative;display:grid;place-items:center;color:var(--acid);font:22px Manrope}.orbit:before,.orbit:after{content:'';position:absolute;border:1px solid #5e668044;border-radius:50%;inset:-9px}.orbit:after{inset:16px;border-color:#c8f16966}.welcome h2{font:700 18px Manrope;margin:0 0 7px}.welcome p{color:var(--muted);font-size:12px;max-width:380px;margin:auto}.message{display:flex;flex-direction:column;gap:5px;margin:0 0 18px;max-width:95%}.message.user{margin-left:auto;align-items:flex-end}.msgmeta{color:#778494;font:9px 'DM Mono';letter-spacing:.12em;text-transform:uppercase}.bubble{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line);background:#171d26;padding:12px 14px;border-radius:5px 13px 13px 13px;color:#dbe2eb;max-width:100%;font-size:13px}.user .bubble{background:#28233b;border-color:#4b426a;border-radius:13px 5px 13px 13px;color:#f1efff}.bubble a.cite{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;margin:0 2px;border:1px solid #596a43;border-radius:5px;background:#1c291a;color:var(--acid);font:10px 'DM Mono';text-decoration:none;vertical-align:2px}.bubble a.cite:hover{background:#2b3e22}.bubble .mutedline{color:var(--muted)}.answerfoot{display:flex;align-items:center;gap:7px;color:#758293;font:9px 'DM Mono';margin-top:3px}.answerfoot .spark{color:var(--acid)}.composer{border-top:1px solid var(--line);padding:13px;display:flex;gap:9px;background:#10141a}.composer textarea{flex:1;min-height:54px;max-height:150px;resize:vertical;background:#0d1117;border:1px solid #303947;border-radius:11px;padding:13px;color:var(--ink);font:13px 'DM Sans';outline:none}.composer textarea:focus{border-color:#8d7fe1;box-shadow:0 0 0 3px #a99aff12}.composer button{min-width:94px;border:1px solid #bedb78;border-radius:10px;background:var(--acid);color:#151c0d;font:700 12px Manrope;cursor:pointer}.composer button:disabled{opacity:.5;cursor:wait}.composernote{display:flex;justify-content:space-between;gap:12px;padding:0 16px 13px;color:#687585;background:#10141a;font:9px 'DM Mono'}.inspector{display:grid;gap:13px}.inspector .side{position:static;max-height:none}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.stat{border:1px solid var(--line);border-radius:9px;padding:9px;background:#141920}.stat strong{display:block;font:700 18px Manrope;color:#e6ebf1}.stat span{display:block;color:#7e8a99;font:9px 'DM Mono';text-transform:uppercase;letter-spacing:.08em}.baseline{border:1px solid #4a426b;background:#1b1a2a;color:#c9c0ff;border-radius:9px;padding:10px;font:10px 'DM Mono';line-height:1.55;margin-top:9px}.sourceList,.claimList{display:grid;gap:9px}.source{border:1px solid var(--line);border-radius:10px;padding:10px;background:#141920}.sourcetop{display:flex;align-items:center;justify-content:space-between;gap:8px}.sourceid{font:9px 'DM Mono';color:var(--acid);border:1px solid #4e623b;border-radius:4px;padding:2px 5px}.source a{color:#dbe2eb;text-decoration:none;font-size:11px;font-weight:600;overflow-wrap:anywhere}.source a:hover{color:var(--acid)}.sourcemeta{color:#718092;font:9px 'DM Mono';margin-top:5px}.sourceexcerpt{color:#9aa6b6;font-size:10px;line-height:1.45;margin-top:7px;max-height:70px;overflow:auto}.tag{font:9px 'DM Mono';text-transform:uppercase;letter-spacing:.07em;padding:3px 5px;border-radius:5px;border:1px solid var(--line2);color:#a9b4c3}.tag.good{border-color:#526c3b;color:var(--acid);background:#182316}.tag.warn{border-color:#765f37;color:var(--amber);background:#211d14}.tag.bad{border-color:#744447;color:#efa0a0;background:#251719}.claim{padding:10px;border:1px solid var(--line);border-radius:10px;background:#141920}.claimtop{display:flex;align-items:center;justify-content:space-between;gap:8px}.claimvalue{font:700 12px Manrope;color:#e7eaf0}.claimsubject{font:10px 'DM Mono';color:#8e9bab;margin-top:4px}.claimquote{font-size:10px;color:#aeb9c6;margin-top:7px;line-height:1.45}.footnote{color:#687585;font-size:10px;line-height:1.5;margin-top:9px}.rightempty{color:#748192;font-size:11px;padding:6px 1px}.tinybutton{border:1px solid var(--line);border-radius:7px;background:#151a21;color:#8e9baa;padding:5px 7px;font:9px 'DM Mono';cursor:pointer}.tinybutton:hover{color:var(--acid);border-color:#566541}.bottomline{display:flex;justify-content:space-between;gap:16px;color:#637080;padding:16px 5px 0;font:9px 'DM Mono';letter-spacing:.08em;text-transform:uppercase}.working{display:inline-flex;align-items:center;gap:8px;color:var(--cyan)}.pulse{width:6px;height:6px;background:currentColor;border-radius:50%;animation:pulse 1.1s infinite}@keyframes pulse{50%{opacity:.2;box-shadow:0 0 0 6px #8fe1dc14}}@media(max-width:1200px){.workspace{grid-template-columns:205px minmax(390px,1fr)}.inspector{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}.inspector .side{max-height:360px;overflow:auto}}@media(max-width:780px){.app{padding:0 12px 24px}.topbar{height:62px}.topright .topclock{display:none}.workspace{grid-template-columns:1fr;padding-top:10px;gap:12px}.leftcol{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px}.leftcol .side+.side{margin:0}.leftcol .side{position:static;max-height:250px}.maincol{grid-row:1}.hero{padding:12px 3px}.hero h1{font-size:34px}.inspector{grid-column:auto;grid-template-columns:1fr 1fr}.inspector .side:last-child{grid-column:1/-1}.messages{max-height:none;min-height:230px}.bottomline{font-size:8px}}@media(max-width:480px){.leftcol{grid-template-columns:1fr}.leftcol .side:nth-child(1){display:none}.inspector{grid-template-columns:1fr}.inspector .side:last-child{grid-column:auto}.hero h1{font-size:30px}.composer button{min-width:74px}.topright{font-size:9px}.brandmeta{font-size:8px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="logo">D</div><div><div class="brandname">daymark<span style="color:var(--acid)">/</span></div><div class="brandmeta">TEMPORAL RESEARCH INSTRUMENT</div></div></div>
+  <div class="topright"><span class="topclock" id="clock"></span><div class="status" id="status"><i class="dot"></i><span id="statusText">checking runtime</span></div></div>
+</header>
+<div class="workspace">
+  <aside class="leftcol">
+    <section class="side">
+      <div class="sectionhead"><h3>Memory index</h3><span class="count" id="memoryCount">00</span></div>
+      <div class="indexlist" id="memoryIndex"><div class="emptyhint">No stored turns in this thread yet.</div></div>
+      <div class="footnote">Dates are resolved in your timezone. Ambiguous references stay ambiguous until topic evidence disambiguates them.</div>
+    </section>
+    <section class="side">
+      <div class="sectionhead"><h3>Test instruments</h3><span class="count">PROMPTS</span></div>
+      <div class="promptlist">
+        <button class="prompt" data-prompt="On Monday we shortlisted 5 CRM tools for a 20-person sales team. Has any of them changed pricing or shipped something big since?"><small>01 / Temporal delta</small>Recheck the CRM shortlist</button>
+        <button class="prompt" data-prompt="What did I ask you on 3 November? Is your answer still correct today?"><small>02 / Historical recall</small>Revisit November 3</button>
+        <button class="prompt" data-prompt="Last Tuesday I asked you about Postgres hosting. Has any pricing changed since then?"><small>03 / Ambiguous weekday</small>Replay Postgres research</button>
+      </div>
+    </section>
+  </aside>
+
+  <main class="maincol">
+    <section class="hero"><div class="kicker">Memory / Time / Evidence</div><h1>What was true.<br><span>What is true now.</span></h1><p>Daymark remembers the question, the date, the original search and the evidence. Then it checks the present without mistaking silence for stability.</p><div class="rule">One callable tool · web_search · local-first history</div></section>
+    <section class="thread">
+      <div class="threadhead"><span>Conversation / <span id="threadId">LOCAL</span></span><span class="live" id="threadState">● READY</span></div>
+      <div class="messages" id="messages"><div class="welcome"><div class="orbit">D</div><h2>Your evidence trail starts here.</h2><p>Ask something current, or return to a question from another day. Daymark will show what it remembered and where its answer came from.</p></div></div>
+      <form class="composer" id="form"><textarea id="input" placeholder="Ask a question, compare options, or revisit an earlier answer…" required></textarea><button id="send">Research ↗</button></form>
+      <div class="composernote"><span>SHIFT + ENTER for a new line</span><span>HISTORY PERSISTS LOCALLY</span></div>
+    </section>
+    <div class="bottomline"><span>Evidence before confidence.</span><span>DAYMARK / BUILD 0.3</span></div>
+  </main>
+
+  <aside class="inspector">
+    <section class="side">
+      <div class="sectionhead"><h3>Recall state</h3><span class="count">01</span></div>
+      <div class="statgrid"><div class="stat"><strong id="statTurns">—</strong><span>Turns recalled</span></div><div class="stat"><strong id="statQueries">—</strong><span>Search calls</span></div><div class="stat"><strong id="statSources">—</strong><span>Receipts</span></div><div class="stat"><strong id="statClaims">—</strong><span>Tracked claims</span></div></div>
+      <div id="baseline" class="baseline" hidden></div>
+      <div class="footnote" id="recallNote">The last answer's memory and search metrics will appear here.</div>
+    </section>
+    <section class="side">
+      <div class="sectionhead"><h3>Evidence rail</h3><span class="count" id="sourceCount">00</span></div>
+      <div class="sourceList" id="sourceList"><div class="rightempty">Cited pages will appear here as numbered receipts.</div></div>
+    </section>
+    <section class="side">
+      <div class="sectionhead"><h3>Claim ledger</h3><span class="count" id="claimCount">00</span></div>
+      <div class="claimList" id="claimList"><div class="rightempty">Price claims are tracked only when a sentence has a recognizable subject. Citation links are not treated as proof by themselves.</div></div>
+      <div class="footnote">Snippet-confirmed means the returned excerpt contains the subject, amount and detected price dimensions. It is a deterministic check, not semantic entailment or a full-page audit.</div>
+    </section>
+  </aside>
+</div>
+</div>
+<script>
+const $=selector=>document.querySelector(selector);
+const messages=$('#messages'),form=$('#form'),input=$('#input'),send=$('#send');
+let conversationId=localStorage.getItem('daymark-conversation')||crypto.randomUUID();
+localStorage.setItem('daymark-conversation',conversationId);$('#threadId').textContent=conversationId.slice(0,8).toUpperCase();
+const dateFmt=new Intl.DateTimeFormat(undefined,{month:'short',day:'2-digit',year:'numeric'});
+function dateLabel(value){try{return dateFmt.format(new Date(value));}catch{return value||'date unknown';}}
+function escapeForText(value){return String(value??'');}
+function addPlainMessage(role,text,turnId=null,sources=[]){
+  if(messages.querySelector('.welcome'))messages.innerHTML='';
+  const wrap=document.createElement('article');wrap.className='message '+role;if(turnId)wrap.dataset.turnId=turnId;
+  const meta=document.createElement('div');meta.className='msgmeta';meta.textContent=role==='user'?'YOU / '+dateLabel(new Date()):'DAYMARK / RESEARCH NOTE';
+  const bubble=document.createElement('div');bubble.className='bubble';
+  if(role==='assistant')renderCitedText(bubble,text,sources);else bubble.textContent=escapeForText(text);
+  wrap.append(meta,bubble);
+  if(role==='assistant'){const foot=document.createElement('div');foot.className='answerfoot';foot.innerHTML='<span class="spark">✳</span><span>ANSWER ARCHIVED WITH SOURCE RECEIPTS</span>';wrap.append(foot);}
+  messages.append(wrap);messages.scrollTop=messages.scrollHeight;return wrap;
+}
+function renderCitedText(parent,answer,sources=[]){
+  const body=String(answer||'').split(/\n\s*Sources\s*\n/i)[0];
+  const pattern=/\[(\d+)\]/g;let cursor=0,match;
+  while((match=pattern.exec(body))){parent.append(document.createTextNode(body.slice(cursor,match.index)));const source=sources[Number(match[1])-1];
+    if(source?.url){const link=document.createElement('a');link.className='cite';link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=match[1];link.title=source.title||source.url;parent.append(link);}else{const span=document.createElement('span');span.className='mutedline';span.textContent='[citation unavailable]';parent.append(span);}cursor=pattern.lastIndex;
+  }
+  parent.append(document.createTextNode(body.slice(cursor)));
+}
+function status(text,kind='working'){const el=$('#status');el.className='status '+(kind==='ready'?'ready':kind==='bad'?'bad':'');$('#statusText').textContent=text;}
+function resetInspector(){for(const id of ['statTurns','statQueries','statSources','statClaims'])$('#'+id).textContent='—';$('#baseline').hidden=true;$('#recallNote').textContent='The last answer\'s memory and search metrics will appear here.';$('#sourceList').innerHTML='<div class="rightempty">Cited pages will appear here as numbered receipts.</div>';$('#claimList').innerHTML='<div class="rightempty">No tracked price claims in the selected answer.</div>';$('#sourceCount').textContent='00';$('#claimCount').textContent='00';}
+function renderEvidence(sources=[],claims=[],memory={},metrics={}){
+  $('#statTurns').textContent=memory.recalled??0;$('#statQueries').textContent=metrics.providerRequests??0;$('#statSources').textContent=sources.length;$('#statClaims').textContent=claims.length;
+  $('#recallNote').textContent=memory.priorQueries?`${memory.priorQueries} historical search query/queries replayed against current pages and pages published after the baseline.`:'No earlier search query was available for automatic replay.';
+  const baseline=$('#baseline');if(memory.baselineDate){baseline.hidden=false;baseline.textContent='BASELINE LOCKED  /  '+memory.baselineDate;}else{baseline.hidden=true;}
+  $('#sourceCount').textContent=String(sources.length).padStart(2,'0');const sourceList=$('#sourceList');sourceList.replaceChildren();
+  if(!sources.length)sourceList.innerHTML='<div class="rightempty">No web receipts were returned for this answer.</div>';
+  sources.forEach((source,index)=>{
+    const card=document.createElement('div');card.className='source';
+    const top=document.createElement('div');top.className='sourcetop';const id=document.createElement('span');id.className='sourceid';id.textContent='['+(index+1)+']';
+    const mode=document.createElement('span');mode.className='tag '+(source.searchSince?'warn':'good');mode.textContent=source.searchSince?'SINCE '+source.searchSince:'CURRENT';top.append(id,mode);
+    const link=document.createElement('a');link.href=source.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=source.title||source.url;
+    const meta=document.createElement('div');meta.className='sourcemeta';meta.textContent=(source.publishedDate?'PUBLISHED '+source.publishedDate+' · ':'PUBLISH DATE UNKNOWN · ')+(source.sourceType||'web').toUpperCase();
+    const excerpt=document.createElement('div');excerpt.className='sourceexcerpt';excerpt.textContent=source.content||source.snippet||'No snippet supplied.';
+    card.append(top,link,meta,excerpt);sourceList.append(card);
+  });
+  const claimList=$('#claimList');claimList.replaceChildren();$('#claimCount').textContent=String(claims.length).padStart(2,'0');
+  if(!claims.length)claimList.innerHTML='<div class="rightempty">No explicit price claim was extracted. Daymark will not invent a ledger entry.</div>';
+  claims.forEach(claim=>{
+    const card=document.createElement('div');card.className='claim';const top=document.createElement('div');top.className='claimtop';const value=document.createElement('span');value.className='claimvalue';value.textContent=claim.value||'Value not captured';
+    const support=document.createElement('span');support.className='tag '+(claim.supportStatus==='snippet-confirmed'?'good':claim.supportStatus==='partial-support'?'warn':'bad');support.textContent=(claim.supportStatus||'unverified').replaceAll('-',' ');top.append(value,support);
+    const subject=document.createElement('div');subject.className='claimsubject';subject.textContent=(claim.subject||'Unknown subject')+' · '+(claim.changeStatus||claim.change_status||'pending');
+    const quote=document.createElement('div');quote.className='claimquote';quote.textContent=claim.supportQuote||claim.support_quote||claim.evidenceText||'No supporting excerpt captured.';card.append(top,subject,quote);claimList.append(card);
+  });
+}
+function rebuildIndex(turns){const list=$('#memoryIndex');list.replaceChildren();const userTurns=turns.filter(turn=>turn.role==='user').slice(-14).reverse();$('#memoryCount').textContent=String(userTurns.length).padStart(2,'0');if(!userTurns.length){list.innerHTML='<div class="emptyhint">No stored turns in this thread yet.</div>';return;}
+  userTurns.forEach(turn=>{const button=document.createElement('button');button.className='indexitem';const date=document.createElement('span');date.className='indexdate';date.textContent=dateLabel(turn.created_at);const content=document.createElement('span');content.className='indextext';content.textContent=turn.content;button.append(date,content);button.addEventListener('click',()=>{const node=messages.querySelector(`[data-turn-id="${turn.id}"]`);if(node)node.scrollIntoView({behavior:'smooth',block:'center'});});list.append(button);});}
+async function restoreHistory(){try{const response=await fetch('/api/history?conversationId='+encodeURIComponent(conversationId));if(!response.ok)return;const data=await response.json();messages.replaceChildren();if(!data.turns?.length){messages.innerHTML='<div class="welcome"><div class="orbit">D</div><h2>Your evidence trail starts here.</h2><p>Ask something current, or return to a question from another day. Daymark will show what it remembered and where its answer came from.</p></div>';return;}
+  for(const turn of data.turns){const sources=turn.sources||[];if(turn.role==='user')addPlainMessage('user',turn.content,turn.id);else addPlainMessage('assistant',turn.content,turn.id,sources);}
+  rebuildIndex(data.turns);const last=[...data.turns].reverse().find(turn=>turn.role==='assistant');if(last){try{const r=await fetch('/api/evidence?turnId='+last.id);const e=await r.json();const claims=[...new Map((e.evidence||[]).filter(row=>row.claim_id).map(row=>[row.claim_id,{subject:row.subject,value:row.claim_value,supportStatus:row.support_status,supportQuote:row.support_quote,changeStatus:row.change_status,evidenceText:row.evidence_text}])).values()];renderEvidence((last.sources||[]).map(s=>({...s,sourceType:'web'})),claims,{recalled:data.turns.length/2},{});}catch{}}
+  }catch(error){console.warn('History could not be restored',error);}}
+async function health(){try{const response=await fetch('/api/health');const data=await response.json();if(data.modelConfigured&&data.searchConfigured)status('RUNTIME READY','ready');else status('API KEYS REQUIRED','bad');$('#threadState').textContent=data.modelConfigured&&data.searchConfigured?'● READY':'● CONFIG NEEDED';$('#threadId').textContent=conversationId.slice(0,8).toUpperCase();}catch{status('SERVER UNAVAILABLE','bad');}}
+$('#clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'2-digit'}).format(new Date()).toUpperCase();
+form.addEventListener('submit',async event=>{event.preventDefault();const message=input.value.trim();if(!message)return;const user=addPlainMessage('user',message);rebuildIndex([...messages.querySelectorAll('.message.user')].map(node=>({id:node.dataset.turnId||'current',role:'user',created_at:new Date().toISOString(),content:node.querySelector('.bubble')?.textContent||''})));input.value='';send.disabled=true;status('RESEARCH IN PROGRESS');$('#threadState').textContent='◌ RECONCILING';const pending=addPlainMessage('assistant','Checking dated memory, replaying prior research where available, and gathering current evidence…');pending.querySelector('.msgmeta').textContent='DAYMARK / WORKING';pending.querySelector('.bubble').classList.add('working');
+  try{const response=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({message,conversationId})});const data=await response.json();if(!response.ok)throw new Error(data.error||'Request failed');pending.remove();addPlainMessage('assistant',data.answer,data.turnId,data.sources||[]);renderEvidence(data.sources||[],data.claims||[],data.memory||{},data.searchMetrics||{});status('RUNTIME READY','ready');$('#threadState').textContent='● RECEIPTS SAVED';const history=await fetch('/api/history?conversationId='+encodeURIComponent(conversationId)).then(r=>r.json());rebuildIndex(history.turns||[]);}
+  catch(error){pending.querySelector('.bubble').classList.remove('working');pending.querySelector('.bubble').textContent='I could not complete that request. '+error.message;status('REQUEST FAILED','bad');$('#threadState').textContent='● NEEDS ATTENTION';}
+  finally{send.disabled=false;messages.scrollTop=messages.scrollHeight;input.focus();}});
+document.querySelectorAll('[data-prompt]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.prompt;input.focus();}));input.addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();form.requestSubmit();}});
+resetInspector();health();restoreHistory();
+</script>
+</body></html>

@@ -1,0 +1,88 @@
+{
+  "mode": "offline-architecture-replay",
+  "notice": "The model and search are mocked. This validates memory retrieval, tool contract, search fan-out, persistence and uncertainty handling; it is not a live factual-accuracy benchmark.",
+  "startedAt": "2026-11-11T09:33:09.567Z",
+  "results": [
+    {
+      "id": "missing-historical-record",
+      "label": "Missing history — do not invent a prior conversation",
+      "checks": {
+        "dateResolved": true,
+        "noFabricatedConversation": true,
+        "noSearchWithoutHistoricalBaseline": true,
+        "noSourcesOrClaims": true,
+        "deterministicShortCircuit": true
+      },
+      "searchCalls": 0,
+      "sources": 0,
+      "answer": "There is no saved conversation for 2026-11-03. I can't truthfully recover what we discussed or compare an earlier answer with today's evidence. Share the topic or the old answer, and I can research it from the web.",
+      "pass": true
+    },
+    {
+      "id": "crm-shortlist-monday",
+      "label": "Monday CRM shortlist — pricing and product changes",
+      "checks": {
+        "recalledExpectedContent": true,
+        "dateResolved": true,
+        "historyRecalled": true,
+        "correctHistoricalBaseline": true,
+        "searchCalled": true,
+        "citationsRendered": true,
+        "uncertaintyPreserved": true,
+        "searchCutoffInferred": true,
+        "currentQuestionExcludedFromMemory": true
+      },
+      "searchCalls": 10,
+      "sources": 10,
+      "answer": "I recovered the Monday shortlist: HubSpot, Pipedrive, Zoho CRM, Freshsales and Salesforce. The synthetic offline search fixtures contain no factual pricing or release evidence, so every vendor-level change remains UNVERIFIABLE. No unchanged claim is justified. [1]\n\nSources\n[1] HubSpot pricing — https://fixture.invalid/hubspot-official-pricing (published 2026-11-10)\n[2] HubSpot pricing — https://fixture.invalid/hubspot-official-pricing (published 2026-11-10) (searched since 2026-11-09)\n[3] Pipedrive pricing — https://fixture.invalid/pipedrive-official-pricing (published 2026-11-10)\n[4] Pipedrive pricing — https://fixture.invalid/pipedrive-official-pricing (published 2026-11-10) (searched since 2026-11-09)\n[5] Zoho CRM pricing — https://fixture.invalid/zoho-crm-official-pricing (published 2026-11-10)\n[6] Zoho CRM pricing — https://fixture.invalid/zoho-crm-official-pricing (published 2026-11-10) (searched since 2026-11-09)\n[7] Freshsales pricing — https://fixture.invalid/freshsales-official-pricing (published 2026-11-10)\n[8] Freshsales pricing — https://fixture.invalid/freshsales-official-pricing (published 2026-11-10) (searched since 2026-11-09)\n[9] Salesforce pricing — https://fixture.invalid/salesforce-official-pricing (published 2026-11-10)\n[10] Salesforce pricing — https://fixture.invalid/salesforce-official-pricing (published 2026-11-10) (searched since 2026-11-09)",
+      "pass": true
+    },
+    {
+      "id": "explicit-november-3",
+      "label": "Explicit historical date — recover question and recheck answer",
+      "checks": {
+        "recalledExpectedContent": true,
+        "dateResolved": true,
+        "historyRecalled": true,
+        "correctHistoricalBaseline": true,
+        "searchCalled": true,
+        "citationsRendered": true,
+        "uncertaintyPreserved": true,
+        "searchCutoffInferred": true,
+        "currentQuestionExcludedFromMemory": true
+      },
+      "searchCalls": 2,
+      "sources": 2,
+      "answer": "On 3 November you asked: “Which Node.js LTS release should we use for a new production service, and what is the support status?” I rechecked the official release schedule; this offline fixture has no real release evidence, so whether the previous recommendation remains correct is UNVERIFIABLE. [1]\n\nSources\n[1] Node.js release schedule — https://fixture.invalid/node.js-official-release-schedule (published 2026-11-10)\n[2] Node.js release schedule — https://fixture.invalid/node.js-official-release-schedule (published 2026-11-10) (searched since 2026-11-03)",
+      "pass": true
+    },
+    {
+      "id": "last-tuesday-postgres",
+      "label": "Ambiguous weekday — Postgres pricing since last Tuesday",
+      "checks": {
+        "recalledExpectedContent": true,
+        "dateResolved": true,
+        "historyRecalled": true,
+        "correctHistoricalBaseline": true,
+        "searchCalled": true,
+        "citationsRendered": true,
+        "uncertaintyPreserved": true,
+        "searchCutoffInferred": true,
+        "currentQuestionExcludedFromMemory": true
+      },
+      "searchCalls": 6,
+      "sources": 6,
+      "answer": "I found the 3 November Postgres discussion about Neon, Supabase and Railway. The historical record contains no exact prices or plan-level citations, and the offline search fixtures contain no live pricing facts. I cannot honestly classify any price as unchanged or changed; the status is UNVERIFIABLE. [1]\n\nSources\n[1] Neon pricing — https://fixture.invalid/neon-official-pricing (published 2026-11-10)\n[2] Neon pricing — https://fixture.invalid/neon-official-pricing (published 2026-11-10) (searched since 2026-11-03)\n[3] Supabase pricing — https://fixture.invalid/supabase-official-pricing (published 2026-11-10)\n[4] Supabase pricing — https://fixture.invalid/supabase-official-pricing (published 2026-11-10) (searched since 2026-11-03)\n[5] Railway pricing — https://fixture.invalid/railway-official-pricing (published 2026-11-10)\n[6] Railway pricing — https://fixture.invalid/railway-official-pricing (published 2026-11-10) (searched since 2026-11-03)",
+      "pass": true
+    }
+  ],
+  "evidenceLedgerChecks": {
+    "baselineSnippetConfirmed": true,
+    "changedValueLinksPrevious": true,
+    "repeatedValueMarkedUnchanged": true,
+    "unsupportedValueCannotSupersede": true
+  },
+  "claimLedgerCheck": true,
+  "passed": true,
+  "finishedAt": "2026-11-11T09:33:09.651Z"
+}
