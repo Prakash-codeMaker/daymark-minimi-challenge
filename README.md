@@ -54,7 +54,7 @@ The offline release checks are documented in `RELEASE_STATUS.md`. The live evalu
 - `DESIGN.md` — one-page architecture and trade-offs.
 - `COMPETITOR_REVIEW.md` — comparison of public Minimi challenge repositories and design implications.
 - `EVALUATION.md` — scenarios, automated checks, evidence model and manual-review rubric.
-- `PUBLISH.md` — exact repository creation and publishing steps.
+- `PUBLISH.md` — local run instructions and final challenge-submission checklist.
 - `RELEASE_STATUS.md` — verified checks and current blockers.
 - `VIDEO_SCRIPT.md` — 60-second walkthrough script.
 
