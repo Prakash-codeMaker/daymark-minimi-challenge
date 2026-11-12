@@ -9,7 +9,7 @@ import { runAgent } from './agent.js';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const db=openDatabase(config.databasePath);
-const mime={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript'};
+const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml'};
 function send(res,status,body,type='application/json; charset=utf-8'){res.writeHead(status,{'content-type':type,'cache-control':'no-store'});res.end(type.startsWith('application/json')?JSON.stringify(body):body);}
 async function bodyJson(req){let raw='';for await(const chunk of req){raw+=chunk;if(raw.length>100_000)throw new Error('Request body too large');}return raw?JSON.parse(raw):{};}
 const server=http.createServer(async(req,res)=>{
