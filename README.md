@@ -24,6 +24,8 @@ Most chat tools answer **“What can I find now?”** Daymark also asks **“Wha
 
 **The central design constraint:** the model gets exactly one callable tool, **web_search**. Date handling, historical recall, query replay, persistence and claim bookkeeping stay in application code.
 
+> **New to Daymark?** Run the app and click **Play walkthrough**. The built-in four-step tour takes about 45 seconds and explains the product visually. It uses a clearly labelled example fixture; it does not call the live model or search providers. Add API keys only when you are ready to run your own research.
+
 ---
 
 ## Start here
@@ -160,7 +162,15 @@ It reports whether the model and search configuration are present, along with th
 
 ## Try the workflow
 
-The app includes a four-step guided tour. Open **Play walkthrough** to understand the flow before sending your own research question.
+The app includes a four-step guided tour. Open **Play walkthrough** before sending your own research question. It is deliberately separate from live chat: the tour uses sample content, while a real research turn needs the model and search credentials described in [Quick start](#quick-start).
+
+### Choose how to try it
+
+| Path | Credentials needed? | What you get |
+|---|---:|---|
+| **Play walkthrough** | No | A guided, fixed example of recall → search → compare → evidence. It is for learning the interface, not for checking today's facts. |
+| **Run your own research** | Yes | A real model response plus Tavily or Exa search results, saved to your local SQLite database. |
+| **Run the offline evaluation** | No | Deterministic tests with scripted model behaviour and synthetic search fixtures. This checks the implementation, not live factual accuracy. |
 
 ### Step A — Create a historical baseline
 
@@ -355,6 +365,22 @@ npm run eval
 └── SECURITY.md          # Local-MVP security boundary
 ~~~
 
+## Learn the codebase
+
+A good way to understand the project is to follow one request from the HTTP route to the saved evidence. Read these files in this order:
+
+| Order | File | What to look for |
+|---:|---|---|
+| 1 | [src/server.js](src/server.js) | The HTTP routes: health, chat, history, evidence and claims. |
+| 2 | [src/config.js](src/config.js) | How environment variables are loaded and how provider/model settings are selected. |
+| 3 | [src/dates.js](src/dates.js) | How natural-language dates become timezone-aware ranges, including ambiguous weekday candidates. |
+| 4 | [src/db.js](src/db.js) | SQLite tables, forward-only migrations, FTS5 recall, source receipts and claim persistence. |
+| 5 | [src/agent.js](src/agent.js) | The main orchestration: memory lookup, safe baseline selection, query replay, the one-tool loop and claim checks. |
+| 6 | [src/search.js](src/search.js) | The Tavily and Exa adapters, date filters and retry behaviour. |
+| 7 | [test/](test/) and [eval/](eval/) | Small regression tests first, then the challenge-shaped offline scenarios. |
+
+**A useful first code-reading exercise:** find the no-history early return in src/agent.js, then find the test that asserts no model or search call happens. This shows how a product rule becomes an implementation boundary and a regression test.
+
 ## Configuration reference
 
 | Variable | Default | Purpose |
@@ -370,6 +396,18 @@ npm run eval
 | DATABASE_PATH | ./data/daymark.sqlite | Local SQLite database path. |
 | MAX_TOOL_ROUNDS | 3 | Maximum model/tool rounds, clamped by the config loader. |
 | MAX_SEARCH_RESULTS | 5 | Results requested per provider call, clamped by the config loader. |
+
+## Troubleshooting
+
+| What you see | What to check |
+|---|---|
+| **API KEYS REQUIRED** in the status pill | The UI loaded, but the server did not find both a model key and a search-provider key. Check your environment file, then restart npm run dev. |
+| Model authentication or tool-call error | Check OPENAI_API_KEY, OPENAI_BASE_URL and OPENAI_MODEL. The selected chat model must support function/tool calling. |
+| Search-provider key missing | Set TAVILY_API_KEY or EXA_API_KEY. With SEARCH_PROVIDER=auto, Exa is preferred when its key is present; otherwise Tavily is used. |
+| A date is not recalled, or Daymark asks which Tuesday | Give an explicit date such as 2026-11-03. The date parser intentionally supports a limited set of phrases and does not guess between ambiguous dates. |
+| The UI opens but no evidence appears | Check the request result and server terminal. A configured key only proves that a value exists; it does not guarantee that the provider request succeeded or returned usable excerpts. |
+| SQLite reports a lock or the database behaves unexpectedly | Stop duplicate local server processes using the same database path, then restart. Keep the database on a local writable directory. |
+| Offline evaluation passes but a live answer is weak | npm run eval is a deterministic architecture check, not a live accuracy benchmark. Run npm run eval:live, then manually inspect every cited page and claim. |
 
 ## Limitations and security
 
