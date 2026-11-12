@@ -10,7 +10,7 @@
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "test": "node --test",
-    "check": "node --check src/config.js && node --check src/server.js && node --check src/agent.js && node --check src/db.js && node --check src/dates.js && node --check src/search.js && node --check eval/offline.js && node --check eval/live.js",
+    "check": "node --check src/config.js && node --check src/server.js && node --check src/agent.js && node --check src/db.js && node --check src/dates.js && node --check src/search.js && node --check eval/offline.js && node --check eval/live.js && node --check public/tour.js",
     "eval": "node eval/offline.js",
     "eval:live": "node eval/live.js"
   }
