@@ -562,3 +562,10 @@ The next improvements should be justified by measured failure modes: do not add 
 
 Daymark connects all three—and keeps the places where it cannot know visible.
 
+
+
+## Guided product walkthrough
+
+The web UI includes a four-step, animated walkthrough for first-time users. It demonstrates the same core workflow as the agent: recover a prior question, re-run current and since-baseline searches, distinguish changed / still-supported / unverifiable outcomes, and inspect source receipts beside tracked claims.
+
+The walkthrough uses a clearly labeled illustrative PostgreSQL-hosting scenario. Its visual cards are not live research results. Use the baseline prompt in the chat first; then run the follow-up prompt to experience temporal recall with your configured model and search provider. Provider marks are bundled locally under `public/assets`.
